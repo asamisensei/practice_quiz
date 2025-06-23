@@ -1,7 +1,6 @@
 let questions = [];
 let currentIndex = 0;
 let num = [0,1,2,3,4,5,6,7,8,9];
-console.log(currentIndex);
 
 async function fetchQuestions() {
   const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
@@ -57,11 +56,14 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-function back(){
- num.push(currentIndex%10);
+
+const back_button = document.getElementById("button");
+
+back_button.addEventListener('click',() => {
+  num.push(currentIndex%10);
   currentIndex++;
   showQuestion();
   console.log(num);
-}
+});
 
 fetchQuestions();
