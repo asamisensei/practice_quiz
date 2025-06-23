@@ -3,7 +3,7 @@
     let currentIndex = 0;
 
     async function fetchQuestions() {
-      const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;);
+      const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
       const data = await res.json();
       questions = data.results;
       showQuestion();
