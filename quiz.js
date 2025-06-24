@@ -1,9 +1,23 @@
+<<<<<<< HEAD
 let questions = [];
 let currentIndex = 0;
 let num = [0,1,2,3,4,5,6,7,8,9];
 
 async function fetchQuestions() {
   const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
+=======
+// quiz.js07
+let questions = [];
+let currentIndex = 0;[]
+let num = [0,1,2,3,4,5,6,7,8,9];
+let badanswer = 0;
+let score = 0;
+let badcheck = 0;
+
+
+async function fetchQuestions() {
+  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
+>>>>>>> 28c6244a279dfc29f9c988ac3b5e89ef8b19d07b
   const data = await res.json();
   questions = data.results;
   showQuestion();
