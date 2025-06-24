@@ -1,16 +1,9 @@
 let questions = [];
 let currentIndex = 0;
-let score = 0;
+let score = 10;
+let isBonus = false;
 let actiontext="";
 let endpoint = "https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39"
-const BGM = new Audio('BGM.mp3')
-BGM.prereload = 'auto';
-BGM.loop = true;
-BGM.play();
-const Tsound = new Audio('正解.mp3');
-Tsound.preroad = 'auto';
-const Fsound = new Audio('不正解.mp3');
-Fsound.prereload = 'auto';
 
 async function fetchQuestions() {
   const res = await fetch(endpoint);
@@ -27,13 +20,16 @@ function decodeHTMLEntities(text) {
 
 function showQuestion() {
   if (currentIndex >= questions.length) {
+    if (!isBonus){
     if (score >= questions.length) {
-      currentIndex = 0;
-      score=0;
-      actiontext = "ボーナス";
-      alert("ノーマルクイズ終了！\n全問正解！条件を達成したのでボーナスステージにご招待！");
-      endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple&#38";
-      fetchQuestions();
+        isBonus = true;
+        currentIndex = 0;
+        score=0;
+        actiontext = "ボーナス";
+        alert("ノーマルクイズ終了！\n全問正解！条件を達成したのでボーナスステージにご招待！");
+        endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple&#38";
+        fetchQuestions();
+      }
     }else{
       document.getElementById('quiz').innerHTML = "<h2>"+actiontext+'クイズ終了！</h2><p>score: ' + score + '/' + questions.length;
       return;
@@ -55,14 +51,12 @@ function showQuestion() {
     btn.className = 'option-btn';
     btn.textContent = decodeHTMLEntities(option);
     btn.onclick = () => {
-        if (option === q.correct_answer) {
-        Tsound.play();
+      if (option === q.correct_answer) {
         score++;
         currentIndex++;
         alert('正解！ score: '+score+"/"+questions.length);     
         showQuestion();
-        } else {
-        Fsound.play();
+      } else {
         alert('不正解! もう一度選んでください');
       }
 
@@ -78,5 +72,17 @@ function shuffleArray(array) {
   }
 }
 
+const btn = document.querySelector("#btn-dark-mode");
+
+//チェックボックス切り替え判定
+btn.addEventListener("change", () => {
+  if (btn.checked === true) {
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('dark-mode');
+  }else {
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+  }
+});
 
 fetchQuestions(endpoint);
