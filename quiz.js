@@ -60,8 +60,6 @@ function showQuestion() {
           badcheck = 1;
         }
       }
-
-    };
     optionsContainer.appendChild(btn);
   });
 }
