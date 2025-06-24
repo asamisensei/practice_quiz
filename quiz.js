@@ -21,7 +21,7 @@ function decodeHTMLEntities(text) {
 }
 
 function showQuestion() {
-  if (currentIndex >= questions.length) {
+  if (currentIndex >= num.length) {
     window.alert('クイズ終了！あなたの不正解を押した数は'　+ badanswer + '回でした！あなたの正解数は' + score + '回でした！');
     document.getElementById('quiz').innerHTML = 
       '<h2>クイズ終了！</h2>';
