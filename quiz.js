@@ -27,6 +27,7 @@ function showQuestion() {
     return;
   }
 
+
   const q = questions[currentIndex];
   const questionText = decodeHTMLEntities(q.question);
   const options = [...q.incorrect_answers, q.correct_answer];
