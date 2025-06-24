@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let questions = [];
 let questionsB = [];
 let currentIndex = 0;
@@ -11,6 +12,26 @@ async function fetchQuestions() {
   questions = data.results;
   showQuestion();
 }
+=======
+// quiz.js
+    let questions = [];
+let currentIndex = 0;
+const BGM = new Audio('BGM.mp3')
+BGM.prereload = 'auto';
+BGM.loop = true;
+BGM.play();
+const Tsound = new Audio('正解.mp3');
+Tsound.preroad = 'auto';
+const Fsound = new Audio('不正解.mp3');
+Fsound.prereload = 'auto';
+
+    async function fetchQuestions() {
+      const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
+      const data = await res.json();
+      questions = data.results;
+      showQuestion();
+    }
+>>>>>>> 2e2f7de4ef82c0a4a7cc34fb484c7a56fc45f2f5
 
 function decodeHTMLEntities(text) {
   const textarea = document.createElement("textarea");
@@ -62,12 +83,46 @@ function showQuestion() {
   });
 }
 
+<<<<<<< HEAD
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+=======
+      document.getElementById('question').textContent = questionText;
+      const optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
+
+      options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = decodeHTMLEntities(option);
+        btn.onclick = () => {
+            if (option === q.correct_answer) {
+            Tsound.play();
+            alert('正解！');
+            currentIndex++;
+            showQuestion();
+            } else {
+            Fsound.play();
+            alert('不正解!もう一度選んでください');
+          }
+
+        };
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+ 
+>>>>>>> 2e2f7de4ef82c0a4a7cc34fb484c7a56fc45f2f5
 
 
 fetchQuestions(endpoint);
