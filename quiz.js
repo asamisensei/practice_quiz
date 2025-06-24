@@ -74,3 +74,4 @@
 
 	let button2 = document.getElementById('btn2');
 	button2.addEventListener('click', buttonClick2);
+	
