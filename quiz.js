@@ -1,6 +1,7 @@
 let questions = [];
 let currentIndex = 0;
-let score = 0;
+let score = 10;
+let isBonus = false;
 let actiontext="";
 let endpoint = "https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39"
 
@@ -19,13 +20,16 @@ function decodeHTMLEntities(text) {
 
 function showQuestion() {
   if (currentIndex >= questions.length) {
+    if (!isBonus){
     if (score >= questions.length) {
-      currentIndex = 0;
-      score=0;
-      actiontext = "ボーナス";
-      alert("ノーマルクイズ終了！\n全問正解！条件を達成したのでボーナスステージにご招待！");
-      endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple&#38";
-      fetchQuestions();
+        isBonus = true;
+        currentIndex = 0;
+        score=0;
+        actiontext = "ボーナス";
+        alert("ノーマルクイズ終了！\n全問正解！条件を達成したのでボーナスステージにご招待！");
+        endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple&#38";
+        fetchQuestions();
+      }
     }else{
       document.getElementById('quiz').innerHTML = "<h2>"+actiontext+'クイズ終了！</h2><p>score: ' + score + '/' + questions.length;
       return;
