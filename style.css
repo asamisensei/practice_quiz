@@ -1,0 +1,46 @@
+body {
+    width: 100%;
+    min-height: 100vh;  
+    font-family:"Hiragino Sans",sans-serif;
+    font-weight:bold;
+    text-align: center;
+    color: #27acd9;
+    background-image: repeating-linear-gradient(
+        to bottom right,
+        hsl(147deg, 100%, 84%),
+        hsl(203deg, 100%, 84%),
+        hsl(203deg, 100%, 84%),
+        hsl(147deg, 100%, 84%) 50%
+    );
+    background-size: 1000% 1000%;
+    animation: colorRotation 100s linear 0s infinite;
+  }
+  
+  
+  
+  button {
+    font-family:"Hiragino Sans",sans-serif;
+    font-weight:bold;
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid #27acd9;
+    color: #27acd9;
+    transition: 0.5s;
+  }
+  
+  button:hover{
+    color: #fff;
+    background: #27acd9;
+  }
+  
+  @keyframes colorRotation {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500% 500%;
+  }
+  }
+  
+  
