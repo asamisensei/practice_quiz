@@ -1,6 +1,6 @@
 // quiz.js07
 let questions = [];
-let currentIndex = 0;[]
+let currentIndex = 0;
 let num = [0,1,2,3,4,5,6,7,8,9];
 let badanswer = 0;
 let score = 0;
@@ -29,7 +29,7 @@ function showQuestion() {
   }
 
 
-  const q = questions[currentIndex];
+  const q = questions[num[currentIndex]];
   const questionText = decodeHTMLEntities(q.question);
   const options = [...q.incorrect_answers, q.correct_answer];
   shuffleArray(options);
@@ -46,11 +46,10 @@ function showQuestion() {
       if (option === q.correct_answer) {
         alert('正解！');
         currentIndex++;
-        if (badcheck == 0)
-        {
+        if (badcheck == 0) {
           badcheck = 0;
           score = score + 1;
-        }else{
+        } else {
           badcheck = 0;
         }
         showQuestion();
@@ -61,6 +60,7 @@ function showQuestion() {
           badcheck = 1;
         }
       }
+
     };
     optionsContainer.appendChild(btn);
     if (currentIndex > 9) {
