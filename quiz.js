@@ -1,6 +1,14 @@
 // quiz.js
     let questions = [];
-    let currentIndex = 0;
+let currentIndex = 0;
+const BGM = new Audio('BGM.mp3')
+BGM.prereload = 'auto';
+BGM.loop = true;
+BGM.play();
+const Tsound = new Audio('正解.mp3');
+Tsound.preroad = 'auto';
+const Fsound = new Audio('不正解.mp3');
+Fsound.prereload = 'auto';
 
     async function fetchQuestions() {
       const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;);
@@ -35,11 +43,13 @@
         btn.className = 'option-btn';
         btn.textContent = decodeHTMLEntities(option);
         btn.onclick = () => {
-          if (option === q.correct_answer) {
+            if (option === q.correct_answer) {
+            Tsound.play();
             alert('正解！');
             currentIndex++;
             showQuestion();
-          } else {
+            } else {
+            Fsound.play();
             alert('不正解!もう一度選んでください');
           }
 
