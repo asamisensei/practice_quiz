@@ -1,4 +1,4 @@
-// quiz.js07
+// quiz.js
 let questions = [];
 let currentIndex = 0;[]
 let badanswer = 0;
