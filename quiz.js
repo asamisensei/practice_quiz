@@ -1,7 +1,8 @@
 // quiz.js
     let questions = [];
     let currentIndex = 0;
-
+    let currentScore = 0;
+    let incorrectAnswer = 0;
     async function fetchQuestions() {
       const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;);
       const data = await res.json();
@@ -37,12 +38,19 @@
         btn.onclick = () => {
           if (option === q.correct_answer) {
             alert('正解！');
+document.getElementById('score').textContent = currentScore++;	currentIndex++;
+document.body.style.backgroundColor = "#FFFFFF";
             currentIndex++;
             showQuestion();
           } else {
+incorrectAnswer++;	alert('不正解!もう一度選んでください');
+document.body.style.backgroundColor = "#FF0000";
             alert('不正解!もう一度選んでください');
-          }
-
+         
+     	if(incorrectAnswer === 5) {	}
+	alert('ゲームオーバー');	
+	document.getElementById('quiz').innerHTML = '<h2>ゲームオーバー</h2>';	
+            }
         };
         optionsContainer.appendChild(btn);
       });
