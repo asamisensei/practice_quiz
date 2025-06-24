@@ -58,3 +58,19 @@
 
 
     fetchQuestions();
+    
+    function buttonClick1() {
+  		let txt_input1 = document.getElementById("textbox1").value;
+ 		document.documentElement.style.setProperty('--Color1',txt_input1);
+	}
+
+	let button1 = document.getElementById('btn1');
+	button1.addEventListener('click', buttonClick1);
+
+	function buttonClick2() {
+ 		let txt_input2 = document.getElementById("textbox2").value;
+ 		document.documentElement.style.setProperty('--Color2',txt_input2);
+	}
+
+	let button2 = document.getElementById('btn2');
+	button2.addEventListener('click', buttonClick2);
