@@ -4,13 +4,6 @@ let currentIndex = 0;[]
 let badanswer = 0;
 let score = 0;
 let badcheck = 0;
-BGM.prereload = 'auto';
-BGM.loop = true;
-BGM.play();
-const Tsound = new Audio('正解.mp3');
-Tsound.preroad = 'auto';
-const Fsound = new Audio('不正解.mp3');
-Fsound.prereload = 'auto';
 
 
 async function fetchQuestions() {
@@ -50,7 +43,6 @@ function showQuestion() {
     btn.textContent = decodeHTMLEntities(option);
     btn.onclick = () => {
       if (option === q.correct_answer) {
-        Tsound.play();
         alert('正解！');
         currentIndex++;
         if (badcheck == 0)
@@ -62,7 +54,6 @@ function showQuestion() {
         }
         showQuestion();
       } else {
-        Fsound.play();
         alert('不正解!もう一度選んでください');
         badanswer++;
         if (badcheck == 0){
