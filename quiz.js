@@ -41,11 +41,10 @@ function showQuestion() {
       if (option === q.correct_answer) {
         alert('正解！');
         currentIndex++;
-        if (badcheck == 0)
-        {
+        if (badcheck == 0) {
           badcheck = 0;
           score = score + 1;
-        }else{
+        } else {
           badcheck = 0;
         }
         showQuestion();
@@ -54,14 +53,14 @@ function showQuestion() {
         badanswer++;
         if (badcheck == 0){
           badcheck = 1;
-      }
+        }
+      };
+      optionsContainer.appendChild(btn);
     };
-    optionsContainer.appendChild(btn);
+    if (currentIndex > 9) {
+      procrastinate.style.display="block";
+    }
   });
-  if (currentIndex > 9){
-    procrastinate.style.display="block";
-  }
-}
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
