@@ -1,16 +1,88 @@
 html {
-  height: 100%;
-  width: 100%;
+  margin: 0px;
+  padding: 5px;
 }
-body{
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  font-family: "Hiragino Sans", sans-serif;
+  font-weight: bold;
+  text-align: center;
   color: var(--main-text);
   background: var(--main-bg);
+
 }
+
+
+div#question {
+  color: var(--main-text);
+  font-size: 25px;
+  display: inline-block;
+  background-color: var(--sub-background);
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid var(--button-border);
+}
+
+
+
+button {
+  font-family: "Hiragino Sans", sans-serif;
+  font-weight: bold;
+  width: 200px;
+  height: 75px;
+  vertical-align: middle;
+  margin: 10px;
+  border: 3px solid var(--button-border);
+  color: var(--button-text);
+  background: var(--sub-background);
+  border-radius: 20px;
+
+
+}
+
+button:hover {
+  color: var(--button-text-hover);
+  background: var(--sub-background-hover);
+}
+
+#reload {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+#darkmode{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background-color: var(--sub-background);
+  border-radius: 10px;
+  border: 3px solid var(--button-border);
+  padding: 10px;
+
+
+
+}
+
 .light-mode{
-  --main-text: #000;
-  --main-bg: #fff;
+  --main-text: #000000;
+  --main-bg: #9ea5ff;
+  --button-text: #000000;
+  --button-border: #7279df;
+  --button-text-hover: #fff;
+  --sub-background: #ffffff44;
+  --sub-background-hover: #b3b8ff;
+
 }
 .dark-mode{
   --main-text: #fff;
-  --main-bg: #202124;
+  --main-bg: #303030;
+  --button-text: #ffffff;
+  --button-border: #1c1c1c;
+  --button-text-hover: #1c1c1c;
+  --sub-background: #ffffff33;
+  --sub-background-hover: #787878;
 }

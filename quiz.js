@@ -1,11 +1,11 @@
+// quiz.js
 let questions = [];
 let currentIndex = 0;
-let badanswer = 0;
-let score = 0;
-let badcheck = 0;
 
 async function fetchQuestions() {
-  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple'); // URL修正
+  const res = await fetch(
+    "https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;",
+  );
   const data = await res.json();
   questions = data.results;
   showQuestion();
@@ -19,8 +19,7 @@ function decodeHTMLEntities(text) {
 
 function showQuestion() {
   if (currentIndex >= questions.length) {
-    window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
-    document.getElementById('quiz').innerHTML = '<h2>クイズ終了！</h2>';
+    document.getElementById("quiz").innerHTML = "<h2>クイズ終了！</h2>";
     return;
   }
 
@@ -29,32 +28,24 @@ function showQuestion() {
   const options = [...q.incorrect_answers, q.correct_answer];
   shuffleArray(options);
 
-  document.getElementById('question').textContent = questionText;
-  const optionsContainer = document.getElementById('options');
-  optionsContainer.innerHTML = '';
+  document.getElementById("question").textContent = questionText;
+  const optionsContainer = document.getElementById("options");
+  optionsContainer.innerHTML = "";
 
-  options.forEach(option => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
+  options.forEach((option) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
     btn.textContent = decodeHTMLEntities(option);
     btn.onclick = () => {
       if (option === q.correct_answer) {
-        alert('正解！');
+        alert("正解！");
         currentIndex++;
-        if (badcheck === 0) {
-          score++;
-        }
-        badcheck = 0;
         showQuestion();
       } else {
-        alert('不正解!もう一度選んでください');
-        badanswer++;
-        if (badcheck === 0) {
-          badcheck = 1;
-        }
+        alert("不正解!もう一度選んでください");
       }
     };
-    optionsContainer.appendChild(btn); // ← ここに移動
+    optionsContainer.appendChild(btn);
   });
 }
 
@@ -65,10 +56,12 @@ function shuffleArray(array) {
   }
 }
 
-const button = document.getElementById("reloadButton");
+const button = document.getElementById("reload");
 button.addEventListener("click", function () {
   location.reload();
 });
+
+document.body.classList.add('light-mode');
 
 const btn = document.getElementById("btn-dark-mode"); // ← 追加
 btn.addEventListener("change", () => {
@@ -81,4 +74,7 @@ btn.addEventListener("change", () => {
   }
 });
 
+
 fetchQuestions();
+
+// length
