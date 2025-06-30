@@ -2,13 +2,19 @@ html {
   height: 100%;
   width: 100%;
 }
+
+:root{
+  --main-bg: white;
+  --main-text: black;
+}
+
 body{
   color: var(--main-text);
   background: var(--main-bg);
 }
 .light-mode{
-  --main-text: #000;
-  --main-bg: #fff;
+  color: var(--main-text);
+  background: var(--main-bg);
 }
 .dark-mode{
   --main-text: #fff;
