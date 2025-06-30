@@ -5,6 +5,15 @@ let isBonus = false;
 let actiontext="";
 let endpoint = "https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple"
 
+const BGM = new Audio('BGM.mp3')
+BGM.prereload = 'auto';
+BGM.loop = true;
+BGM.play();
+const Tsound = new Audio('正解.mp3');
+Tsound.preroad = 'auto';
+const Fsound = new Audio('不正解.mp3');
+Fsound.prereload = 'auto';
+
 async function fetchQuestions() {
   const res = await fetch(endpoint);
   const data = await res.json();
@@ -51,12 +60,14 @@ function showQuestion() {
     btn.className = 'option-btn';
     btn.textContent = decodeHTMLEntities(option);
     btn.onclick = () => {
-      if (option === q.correct_answer) {
+        if (option === q.correct_answer) {
+        Tsound.play();
         score++;
         currentIndex++;
         alert('正解！ score: '+score+"/"+questions.length);     
         showQuestion();
-      } else {
+        } else {
+        Fsound.play();
         alert('不正解! もう一度選んでください');
       }
 
