@@ -8,6 +8,18 @@ let endpoint = "https://opentdb.com/api.php?amount=10&difficulty=medium&type=mul
 let badanswer = 0;
 let badcheck = 0;
 
+// BGMと効果音
+const BGM = new Audio('BGM.mp3');
+BGM.preload = 'auto';
+BGM.loop = true;
+BGM.play();
+
+const Tsound = new Audio('正解.mp3');
+Tsound.preload = 'auto';
+
+const Fsound = new Audio('不正解.mp3');
+Fsound.preload = 'auto';
+
 async function fetchQuestions() {
   const res = await fetch(endpoint);
   const data = await res.json();
@@ -29,13 +41,12 @@ function showQuestion() {
         currentIndex = 0;
         score = 0;
         actiontext = "ボーナス";
-        window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
         alert("ノーマルクイズ終了！\n全問正解！条件を達成したのでボーナスステージにご招待！");
         endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple";
         fetchQuestions();
         return;
       } else {
-        window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
+        alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
         document.getElementById('quiz').innerHTML = '<h2>クイズ終了！</h2>';
         return;
       }
@@ -66,6 +77,7 @@ function showQuestion() {
         if (badcheck === 0) {
           score++;
         }
+        Tsound.play();
         resultContainer.textContent = '〇';
         resultContainer.style.color = 'green';
         setTimeout(() => {
@@ -74,6 +86,7 @@ function showQuestion() {
           showQuestion();
         }, 1000);
       } else {
+        Fsound.play();
         resultContainer.textContent = '✕';
         resultContainer.style.color = 'red';
         alert('不正解! もう一度選んでください');
@@ -94,7 +107,7 @@ function shuffleArray(array) {
   }
 }
 
-// ページリロード用ボタン
+// リロードボタン
 const button = document.getElementById("reloadButton");
 if (button) {
   button.addEventListener("click", function () {
@@ -102,7 +115,7 @@ if (button) {
   });
 }
 
-// ダークモード切り替え対応
+// ダークモード切替
 const btn = document.getElementById("btn-dark-mode");
 if (btn) {
   btn.addEventListener("change", () => {
