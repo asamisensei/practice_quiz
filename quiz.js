@@ -34,6 +34,10 @@ function showQuestion() {
         endpoint = "https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple";
         fetchQuestions();
         return;
+      } else {
+        window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
+        document.getElementById('quiz').innerHTML = '<h2>クイズ終了！</h2>';
+        return;
       }
     } else {
       document.getElementById('quiz').innerHTML = "<h2>" + actiontext + 'クイズ終了！</h2><p>score: ' + score + '/' + questions.length;
@@ -49,7 +53,9 @@ function showQuestion() {
   document.getElementById('question').textContent = actiontext + (currentIndex + 1) + "問目 : " + questionText;
 
   const optionsContainer = document.getElementById('options');
+  const resultContainer = document.getElementById('result');
   optionsContainer.innerHTML = '';
+  resultContainer.textContent = '';
 
   options.forEach(option => {
     const btn = document.createElement('button');
@@ -60,11 +66,16 @@ function showQuestion() {
         if (badcheck === 0) {
           score++;
         }
-        badcheck = 0;
-        currentIndex++;
-        alert('正解！ score: ' + score + "/" + questions.length);
-        showQuestion();
+        resultContainer.textContent = '〇';
+        resultContainer.style.color = 'green';
+        setTimeout(() => {
+          currentIndex++;
+          badcheck = 0;
+          showQuestion();
+        }, 1000);
       } else {
+        resultContainer.textContent = '✕';
+        resultContainer.style.color = 'red';
         alert('不正解! もう一度選んでください');
         badanswer++;
         if (badcheck === 0) {
@@ -85,20 +96,24 @@ function shuffleArray(array) {
 
 // ページリロード用ボタン
 const button = document.getElementById("reloadButton");
-button.addEventListener("click", function () {
-  location.reload();
-});
+if (button) {
+  button.addEventListener("click", function () {
+    location.reload();
+  });
+}
 
 // ダークモード切り替え対応
 const btn = document.getElementById("btn-dark-mode");
-btn.addEventListener("change", () => {
-  if (btn.checked === true) {
-    document.body.classList.remove('light-mode');
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
-    document.body.classList.add('light-mode');
-  }
-});
+if (btn) {
+  btn.addEventListener("change", () => {
+    if (btn.checked === true) {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.body.classList.add('light-mode');
+    }
+  });
+}
 
 fetchQuestions();
