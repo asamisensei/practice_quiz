@@ -5,6 +5,8 @@ html {
 body{
   color: var(--main-text);
   background: var(--main-bg);
+  font-family: serif;
+  font-size:  2.0rem;
 }
 .light-mode{
   --main-text: #000;
