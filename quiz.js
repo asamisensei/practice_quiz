@@ -1,13 +1,11 @@
-// quiz.js
 let questions = [];
-let currentIndex = 0;[]
+let currentIndex = 0;
 let badanswer = 0;
 let score = 0;
 let badcheck = 0;
 
-
 async function fetchQuestions() {
-  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
+  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple'); // URL修正
   const data = await res.json();
   questions = data.results;
   showQuestion();
@@ -21,12 +19,10 @@ function decodeHTMLEntities(text) {
 
 function showQuestion() {
   if (currentIndex >= questions.length) {
-    window.alert('クイズ終了！あなたの不正解を押した数は'　+ badanswer + '回でした！あなたの正解数は' + score + '回でした！');
-    document.getElementById('quiz').innerHTML = 
-      '<h2>クイズ終了！</h2>';
+    window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
+    document.getElementById('quiz').innerHTML = '<h2>クイズ終了！</h2>';
     return;
   }
-
 
   const q = questions[currentIndex];
   const questionText = decodeHTMLEntities(q.question);
@@ -45,22 +41,20 @@ function showQuestion() {
       if (option === q.correct_answer) {
         alert('正解！');
         currentIndex++;
-        if (badcheck == 0)
-        {
-          badcheck = 0;
-          score = score + 1;
-        }else{
-          badcheck = 0;
+        if (badcheck === 0) {
+          score++;
         }
+        badcheck = 0;
         showQuestion();
       } else {
         alert('不正解!もう一度選んでください');
         badanswer++;
-        if (badcheck == 0){
+        if (badcheck === 0) {
           badcheck = 1;
         }
       }
-    optionsContainer.appendChild(btn);
+    };
+    optionsContainer.appendChild(btn); // ← ここに移動
   });
 }
 
@@ -73,16 +67,15 @@ function shuffleArray(array) {
 
 const button = document.getElementById("reloadButton");
 button.addEventListener("click", function () {
-    location.reload();
+  location.reload();
 });
 
-
-//チェックボックス切り替え判定
+const btn = document.getElementById("btn-dark-mode"); // ← 追加
 btn.addEventListener("change", () => {
   if (btn.checked === true) {
     document.body.classList.remove('light-mode');
     document.body.classList.add('dark-mode');
-  }else {
+  } else {
     document.body.classList.remove('dark-mode');
     document.body.classList.add('light-mode');
   }
