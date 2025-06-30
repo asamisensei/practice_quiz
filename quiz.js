@@ -1,10 +1,23 @@
 // quiz.js
+<<<<<<< HEAD
 let questions = [];
 let currentIndex = 0;[]
 let badanswer = 0;
 let score = 0;
 let badcheck = 0;
 
+=======
+    let questions = [];
+    let currentIndex = 0;
+    let currentScore = 0;
+    let incorrectAnswer = 0;
+    async function fetchQuestions() {
+      const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;);
+      const data = await res.json();
+      questions = data.results;
+      showQuestion();
+    }
+>>>>>>> 0623_08
 
 async function fetchQuestions() {
   const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
@@ -64,6 +77,7 @@ function showQuestion() {
   });
 }
 
+<<<<<<< HEAD
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -86,3 +100,66 @@ btn.addEventListener("change", () => {
 });
 
 fetchQuestions();
+=======
+      const q = questions[currentIndex];
+      const questionText = decodeHTMLEntities(q.question);
+      const options = [...q.incorrect_answers, q.correct_answer];
+      shuffleArray(options);
+
+      document.getElementById('question').textContent = questionText;
+      const optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
+
+      options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = decodeHTMLEntities(option);
+        btn.onclick = () => {
+          if (option === q.correct_answer) {
+            alert('正解！');
+document.getElementById('score').textContent = currentScore++;	currentIndex++;
+document.body.style.backgroundColor = "#FFFFFF";
+            currentIndex++;
+            showQuestion();
+          } else {
+incorrectAnswer++;	alert('不正解!もう一度選んでください');
+document.body.style.backgroundColor = "#FF0000";
+            alert('不正解!もう一度選んでください');
+         
+     	if(incorrectAnswer === 5) {	}
+	alert('ゲームオーバー');	
+	document.getElementById('quiz').innerHTML = '<h2>ゲームオーバー</h2>';	
+            }
+        };
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+ 
+
+
+    fetchQuestions();
+    
+    function buttonClick1() {
+  		let txt_input1 = document.getElementById("textbox1").value;
+ 		document.documentElement.style.setProperty('--Color1',txt_input1);
+	}
+
+	let button1 = document.getElementById('btn1');
+	button1.addEventListener('click', buttonClick1);
+
+	function buttonClick2() {
+ 		let txt_input2 = document.getElementById("textbox2").value;
+ 		document.documentElement.style.setProperty('--Color2',txt_input2);
+	}
+
+	let button2 = document.getElementById('btn2');
+	button2.addEventListener('click', buttonClick2);
+	
+>>>>>>> 0623_08
