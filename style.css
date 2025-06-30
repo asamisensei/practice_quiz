@@ -2,30 +2,77 @@ html {
   height: 100%;
   width: 100%;
 }
-<<<<<<< HEAD
-body{
-  color: var(--main-text);
-  background: var(--main-bg);
-}
-.light-mode{
+
+/* 変数の初期値を設定（light-modeをデフォルトとして） */
+:root {
   --main-text: #000;
   --main-bg: #fff;
-}
-.dark-mode{
-  --main-text: #fff;
-  --main-bg: #202124;
-}
-=======
-
-:root{
   --Color1: white;
   --Color2: black;
 }
 
+/* body共通スタイル */
 body {
+  font-family: serif;
+  font-size: 2.0rem;
+  color: var(--main-text);
+  background: var(--main-bg);
   background-color: var(--Color1);
   color: var(--Color2);
 }
 
+/* モード切替用 */
+.light-mode {
+  --main-text: #000;
+  --main-bg: #fff;
+}
 
->>>>>>> 0623_08
+.dark-mode {
+  --main-text: #fff;
+  --main-bg: #202124;
+}
+
+/* オープニングアニメーション */
+.op {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOut 1.5s 2.5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.op__logo {
+  opacity: 0;
+  animation: logo_fade 2s 0.5s forwards;
+  width: 900px;
+}
+
+@keyframes logo_fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
