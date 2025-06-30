@@ -1,11 +1,9 @@
 // quiz.js
 <<<<<<< HEAD
-let questions = [];
-let currentIndex = 0;[]
-let badanswer = 0;
-let score = 0;
-let badcheck = 0;
-
+ let questions = [];
+    let currentIndex = 0;
+    let currentScore = 0;
+    let incorrectAnswer = 0;
 =======
     let questions = [];
     let currentIndex = 0;
@@ -17,7 +15,6 @@ let badcheck = 0;
       questions = data.results;
       showQuestion();
     }
->>>>>>> 0623_08
 
 async function fetchQuestions() {
   const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
@@ -161,5 +158,3 @@ document.body.style.backgroundColor = "#FF0000";
 
 	let button2 = document.getElementById('btn2');
 	button2.addEventListener('click', buttonClick2);
-	
->>>>>>> 0623_08
