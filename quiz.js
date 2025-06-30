@@ -1,13 +1,11 @@
-// quiz.js
 let questions = [];
-let currentIndex = 0;[]
+let currentIndex = 0;
 let badanswer = 0;
 let score = 0;
 let badcheck = 0;
 
-
 async function fetchQuestions() {
-  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple&#39;');
+  const res = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
   const data = await res.json();
   questions = data.results;
   showQuestion();
@@ -21,12 +19,10 @@ function decodeHTMLEntities(text) {
 
 function showQuestion() {
   if (currentIndex >= questions.length) {
-    window.alert('クイズ終了！あなたの不正解を押した数は'　+ badanswer + '回でした！あなたの正解数は' + score + '回でした！');
-    document.getElementById('quiz').innerHTML = 
-      '<h2>クイズ終了！</h2>';
+    window.alert('クイズ終了！あなたの不正解を押した数は' + badanswer + '回でした！あなたの正解数は' + score + '回でした！');
+    document.getElementById('quiz').innerHTML = '<h2>クイズ終了！</h2>';
     return;
   }
-
 
   const q = questions[currentIndex];
   const questionText = decodeHTMLEntities(q.question);
@@ -35,7 +31,9 @@ function showQuestion() {
 
   document.getElementById('question').textContent = questionText;
   const optionsContainer = document.getElementById('options');
+  const resultContainer = document.getElementById('result');
   optionsContainer.innerHTML = '';
+  resultContainer.textContent = '';
 
   options.forEach(option => {
     const btn = document.createElement('button');
@@ -43,23 +41,21 @@ function showQuestion() {
     btn.textContent = decodeHTMLEntities(option);
     btn.onclick = () => {
       if (option === q.correct_answer) {
-        alert('正解！');
-        currentIndex++;
-        if (badcheck == 0)
-        {
+        resultContainer.textContent = '〇';
+        resultContainer.style.color = 'green';
+        score++;
+        setTimeout(() => {
+          currentIndex++;
           badcheck = 0;
-          score = score + 1;
-        }else{
-          badcheck = 0;
-        }
-        showQuestion();
+          showQuestion();
+        }, 1000);
       } else {
+        resultContainer.textContent = '✕';
+        resultContainer.style.color = 'red';
         alert('不正解!もう一度選んでください');
         badanswer++;
-        if (badcheck == 0){
-          badcheck = 1;
-        }
       }
+    };
     optionsContainer.appendChild(btn);
   });
 }
@@ -70,8 +66,6 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-
-
 const btn = document.querySelector("#btn-dark-mode");
 
 //チェックボックス切り替え判定
@@ -84,5 +78,4 @@ btn.addEventListener("change", () => {
     document.body.classList.add('light-mode');
   }
 });
-
-fetchQuestions();
+fetchQuestions()
