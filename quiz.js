@@ -71,8 +71,11 @@ function shuffleArray(array) {
   }
 }
 
+const button = document.getElementById("reloadButton");
+button.addEventListener("click", function () {
+    location.reload();
+});
 
-const btn = document.querySelector("#btn-dark-mode");
 
 //チェックボックス切り替え判定
 btn.addEventListener("change", () => {
