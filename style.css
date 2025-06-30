@@ -2,20 +2,37 @@ html {
   height: 100%;
   width: 100%;
 }
-body{
+
+/* 変数の初期値を設定（light-modeをデフォルトとして） */
+:root {
+  --main-text: #000;
+  --main-bg: #fff;
+  --Color1: white;
+  --Color2: black;
+}
+
+/* body共通スタイル */
+body {
+  font-family: serif;
+  font-size: 2.0rem;
   color: var(--main-text);
   background: var(--main-bg);
-  font-family: serif;
-  font-size:  2.0rem;
+  background-color: var(--Color1);
+  color: var(--Color2);
 }
-.light-mode{
+
+/* モード切替用 */
+.light-mode {
   --main-text: #000;
   --main-bg: #fff;
 }
-.dark-mode{
+
+.dark-mode {
   --main-text: #fff;
   --main-bg: #202124;
 }
+
+/* オープニングアニメーション */
 .op {
   position: fixed;
   top: 0;
@@ -34,7 +51,6 @@ body{
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
     visibility: hidden;
@@ -52,12 +68,10 @@ body{
     opacity: 0;
     transform: translateY(20px);
   }
-
   60% {
     opacity: 1;
     transform: translateY(0);
   }
-
   100% {
     opacity: 0;
   }

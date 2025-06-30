@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>クイズゲーム</title>
-   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- ダークモード切替 -->
   <input type="checkbox" name="dark-mode" id="btn-dark-mode">
   <span>ダークモード</span>
-  <div id="quiz">
 
+  <div id="quiz">
+    <!-- 問題 -->
     <div id="question">Loading...</div>
+
+    <!-- オープニングアニメーション -->
     <div class="op">
       <img class="op__logo" src="https://words-free.com/material/07-english-words/0625-3d-image-m.png" alt="let's Quiz!">
     </div>
+
+    <!-- 選択肢 -->
     <div id="options"></div>
+
+    <!-- 結果（○✕） -->
     <div id="result"></div>
 
-  <script type="module" src="quiz.js"></script>
+    <!-- スコア -->
+    <div>スコア: <span id="score">0</span></div>
   </div>
-   <button id="reloadButton">ページをリロード</button>
+
+  <!-- ページリロードボタン -->
+  <button id="reloadButton">ページをリロード</button>
+
+  <!-- モジュール形式でJavaScript読み込み -->
+  <script type="module" src="quiz.js"></script>
 </body>
 </html>
-
