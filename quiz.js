@@ -139,6 +139,23 @@ if (darkModeBtn) {
 
 // クイズの開始
 fetchQuestions();
+// 背景色変更ボタン処理
+const button1 = document.getElementById('btn1');
+if (button1) {
+  button1.addEventListener('click', () => {
+    const color = document.getElementById('textbox1').value;
+    document.documentElement.style.setProperty('--main-bg', color);
+  });
+}
+
+// 文字色変更ボタン処理
+const button2 = document.getElementById('btn2');
+if (button2) {
+  button2.addEventListener('click', () => {
+    const color = document.getElementById('textbox2').value;
+    document.documentElement.style.setProperty('--main-text', color);
+  });
+}
 
 // カウントダウンタイマー（3分）
 window.onload = function () {
