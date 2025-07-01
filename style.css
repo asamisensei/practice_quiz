@@ -3,13 +3,13 @@ html {
   width: 100%;
 }
 
-/* 変数の初期値を設定（light-modeをデフォルトとして） */
+/* カラーバリアブル（light-mode をデフォルトとする） */
 :root {
   --main-text: #000;
   --main-bg: #fff;
 }
 
-/* body共通スタイル */
+/* body 共通スタイル */
 body {
   font-family: serif;
   font-size: 2.0rem;
@@ -17,18 +17,19 @@ body {
   background: var(--main-bg);
 }
 
-/* モード切替用 */
+/* ライトモード用（デフォルト） */
 .light-mode {
   --main-text: #000;
   --main-bg: #fff;
 }
 
+/* ダークモード用 */
 .dark-mode {
   --main-text: #fff;
   --main-bg: #202124;
 }
 
-/* オープニングアニメーション */
+/* オープニングアニメーション用の全画面レイヤー */
 .op {
   position: fixed;
   top: 0;
@@ -43,6 +44,7 @@ body {
   animation: fadeOut 1.5s 2.5s forwards;
 }
 
+/* フェードアウトアニメーション */
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -53,12 +55,14 @@ body {
   }
 }
 
+/* ロゴ表示用 */
 .op__logo {
   opacity: 0;
   animation: logo_fade 2s 0.5s forwards;
   width: 900px;
 }
 
+/* ロゴフェードイン → アウトのアニメーション */
 @keyframes logo_fade {
   0% {
     opacity: 0;
