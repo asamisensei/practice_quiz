@@ -3,13 +3,13 @@ html {
   width: 100%;
 }
 
-/* 変数の初期値を設定（light-modeをデフォルトとして） */
+/* カラーバリアブル（light-mode がデフォルト） */
 :root {
   --main-text: #000;
   --main-bg: #fff;
 }
 
-/* body共通スタイル */
+/* 本文共通スタイル */
 body {
   font-family: serif;
   font-size: 2.0rem;
@@ -17,12 +17,13 @@ body {
   background: var(--main-bg);
 }
 
-/* モード切替用 */
+/* ライトモード用（初期状態） */
 .light-mode {
   --main-text: #000;
   --main-bg: #fff;
 }
 
+/* ダークモード用 */
 .dark-mode {
   --main-text: #fff;
   --main-bg: #202124;
